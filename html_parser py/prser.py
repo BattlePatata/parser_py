@@ -35,13 +35,18 @@ if res_file == 0:
     with open(f'{user_site}.txt', 'w', encoding='utf-8') as write_file:
         print(f'{user_site}.txt created!')
 
+prev_name = ''
 for i, data in enumerate(_texts):
     res = data.text()
     if len(res) > 0:
         name = ' '.join(res.split())
+        five_chars = ''
+        for chars in name[:6]:
+            five_chars += chars
         
-        with open(f'{user_site}.txt', 'a', encoding='utf-8') as write_file:
-            write_file.write(f'{name}\n\n')
+        if five_chars not in prev_name:
+            with open(f'{user_site}.txt', 'a', encoding='utf-8') as write_file:
+                write_file.write(f'{name}\n\n')
 
         print()
         print(name)
